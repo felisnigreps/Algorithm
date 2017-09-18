@@ -1,56 +1,67 @@
 package com.monkey.sort;
 
-/**
- * Created by xugenli on 2017/2/19.
- */
+import java.util.LinkedList;
+
 public class QuickSort {
-    //相对来说比较快的排序  O(n^logn) 大部分情况下是最好的解决办法 如果已经是几乎有序 那么效率和冒泡差不多
-    //选取一个基准值 为的是第一次排序后 左侧都比基准值小 右侧都比基准值大
-    public static void doSort(int[] a, int low, int high) {
-        //选取第一个做基准值 注意基准值在排序右半侧的时候会变 所以要写a[low]
-        int key = a[low];
-        //左侧指针
-        int start = low;
-        //右侧指针
-        int end = high;
-        //开始循环 直到指针相遇 递归
-        //等下进行优化.if判断
+    public static void rec_quickSort(int[] a, int start, int end) {
+        int index = 0;
+        if (start < end) {
+            index = partition(a, start, end);
+            rec_quickSort(a, start, index - 1);
+            rec_quickSort(a, index + 1, end);
+        }
+    }
+
+    private static void nonRec_quickSort(int[] a, int start, int end) {
+        LinkedList<Integer> stack = new LinkedList<Integer>();  //用栈模拟
+        if (start < end) {
+            stack.push(end);
+            stack.push(start);
+            while (!stack.isEmpty()) {
+                int l = stack.pop();
+                int r = stack.pop();
+                int index = partition(a, l, r);
+                if (l < index - 1) {
+                    stack.push(index - 1);
+                    stack.push(l);
+                }
+                if (r > index + 1) {
+                    stack.push(r);
+                    stack.push(index + 1);
+                }
+            }
+        }
+    }
+
+    //快排分割算法
+    public static int partition(int[] a, int start, int end) {
+        //选择开始为基准点
+        int pivot = a[start];
         while (start < end) {
-            //从后方开始循环 如果大于key就往前挪动指针 直到找到小于key的值
-            //while中还存在start<end的原因是函数内部有end--,不然会报出越界异常
-            while (start < end && a[end] >= key) {
+            while (start < end && a[end] >= pivot) {
                 end--;
             }
-            //如果比key小,那么就换位置
-            int temp = key;
-            key = a[end];
-            a[end] = temp;
-            //然后从另一端开始比较
-            while (start < end && a[start] <= key) {
+            //把右侧第1个小于pivot的值赋到左1
+            //左1值存储到了pivot中
+            a[start] = a[end];
+            while (start < end && a[start] <= pivot) {
                 start++;
             }
-            temp = key;
-            key = a[start];
-            a[start] = temp;
+            //把左侧第1个大于pivot的值赋到右侧
+            a[end] = a[start];
         }
-        //开始递归
-        //避免栈溢出 设置判断条件
-        if (start > low) {
-            doSort(a, low, start - 1);
-        }
-        if (end < high) {
-            doSort(a, end + 1, high);
-        }
-
-
+        //最后再还原pivot值
+        a[start] = pivot;
+        return start;
     }
 
     public static void main(String[] args) {
         int[] arr = {9, 2, 1, 4, 3, 5, 12, 34, 55, 6, 22, 3, 12, 42, 45, 67, 33, 22, 32};
-        doSort(arr, 0, arr.length - 1);
+        // rec_quickSort(arr,0,arr.length-1);
+        nonRec_quickSort(arr, 0, arr.length - 1);
         for (int a : arr) {
-            System.out.print(a + "_");
+            System.out.print(a + " ");
         }
+
     }
 }
-
