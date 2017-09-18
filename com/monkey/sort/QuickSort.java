@@ -56,7 +56,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {9, 2, 1, 4, 3, 5, 12, 34, 55, 6, 22, 3, 12, 42, 45, 67, 33, 22, 32};
+        int[] arr = {5,4,3,6,7,2,9};
         // rec_quickSort(arr,0,arr.length-1);
         nonRec_quickSort(arr, 0, arr.length - 1);
         for (int a : arr) {
