@@ -8,8 +8,8 @@ import java.util.Stack;
  */
 public class BinaryTreeNode<T> {
     public T val;
-    public BinaryTreeNode left;
-    public BinaryTreeNode right;
+    public BinaryTreeNode<T> left;
+    public BinaryTreeNode<T> right;
 
     public T getVal() {
         return val;
