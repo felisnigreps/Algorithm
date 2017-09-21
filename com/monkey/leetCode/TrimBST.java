@@ -8,7 +8,8 @@ public class TrimBST {
         if (root == null) {
             return null;
         }
-        //先找到根节点
+        //找到根节点
+        //如果上来就满足条件 记得break跳出循环
         while (root != null) {
             if (root.val < L) {
                 root = root.right;
@@ -18,10 +19,10 @@ public class TrimBST {
                 break;
             }
         }
-        //根节点赋给node
         node = root;
-
-        //筛选左侧节点
+        //修剪左节点
+        //因为root在LR之间,所以左节点只需要判断左区间
+        //判断之后向下进行 注意退出条件
         while (node.left != null) {
             if (node.left.val < L) {
                 node.left = node.left.right;
@@ -31,7 +32,8 @@ public class TrimBST {
         }
         node = root;
 
-        //筛选右侧节点
+        //修剪右节点
+
         while (node.right != null) {
             if (node.right.val > R) {
                 node.right = node.right.left;
@@ -42,6 +44,5 @@ public class TrimBST {
 
         return root;
     }
-
 
 }
