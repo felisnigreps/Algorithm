@@ -1,6 +1,7 @@
 package com.monkey.BinaryTree;
 
 import com.monkey.dataStructure.BinaryTreeNode;
+import com.monkey.leetCode.TrimBST;
 
 public class BinaryTreeDemo {
     //minDepth 最小深度
@@ -73,8 +74,13 @@ public class BinaryTreeDemo {
 
         System.out.println("---最大深度---");
         System.out.println(bTree.maxDepth(bTree));
-        System.out.println();
 
+        System.out.println("---修剪二叉树---");
+        TrimBST a = new TrimBST();
+        BinaryTreeNode<Integer> cache = new BinaryTreeNode<Integer>(1);
+        cache.left = new BinaryTreeNode<Integer>(0);
+        cache.right= new BinaryTreeNode<Integer>(2);
+        cache.levelOrder(a.trimBST(cache,1,2));
 
 
     }
