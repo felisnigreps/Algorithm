@@ -1,6 +1,6 @@
 package com.monkey.leetCode;
 
-import com.monkey.dataStructure.BinaryTreeNode;
+import com.monkey.dataStructure.TreeNode;
 
 /**
  * Created by xugenli on 2017/6/26.
@@ -8,7 +8,7 @@ import com.monkey.dataStructure.BinaryTreeNode;
 public class MergeTwoBinaryTree {
 
 
-    public BinaryTreeNode mergeTrees(BinaryTreeNode t1, BinaryTreeNode t2) {
+    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
         if (t1 == null && t2 == null) {
             return null;
         } else if (t1 != null && t2 == null) {
@@ -25,14 +25,14 @@ public class MergeTwoBinaryTree {
     }
 
     public static void main(String[] args) {
-        BinaryTreeNode t1 = new BinaryTreeNode(1);
-        BinaryTreeNode t2 = new BinaryTreeNode("2");
-        t1.left = new BinaryTreeNode("3");
-        t1.right = new BinaryTreeNode("4");
-        t1.left.left = new BinaryTreeNode("4");
-        t2.left = new BinaryTreeNode("2");
-        t2.right = new BinaryTreeNode("4");
-        t2.right.right = new BinaryTreeNode("7");
+        TreeNode t1 = new TreeNode(1);
+        TreeNode t2 = new TreeNode("2");
+        t1.left = new TreeNode("3");
+        t1.right = new TreeNode("4");
+        t1.left.left = new TreeNode("4");
+        t2.left = new TreeNode("2");
+        t2.right = new TreeNode("4");
+        t2.right.right = new TreeNode("7");
         MergeTwoBinaryTree test = new MergeTwoBinaryTree();
         System.out.println(test.mergeTrees(t1, t2));
 

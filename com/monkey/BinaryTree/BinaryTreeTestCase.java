@@ -1,9 +1,11 @@
 package com.monkey.BinaryTree;
 
-import com.monkey.dataStructure.BinaryTreeNode;
+import com.monkey.dataStructure.TreeNode;
+import com.monkey.dataStructure.TreeNodeUtil;
+import com.monkey.leetCode.BinaryTreePaths;
 import com.monkey.leetCode.TrimBST;
 
-public class BinaryTreeDemo {
+public class BinaryTreeTestCase {
     //minDepth 最小深度
     //numOfTreeNode 节点个数
     //numOfChildNode 叶子节点个数
@@ -32,56 +34,60 @@ public class BinaryTreeDemo {
      *  </pre>
      */
     public static void main(String[] args) throws InterruptedException {
-        BinaryTreeNode<String> bTree = new BinaryTreeNode<String>("A");
+        TreeNode<String> bTree = new TreeNode<String>("A");
         //也可以使用insertLeft方法等新建结点,按照方法插入
-        bTree.left = new BinaryTreeNode("B");
-        bTree.left.left = new BinaryTreeNode("D");
-        bTree.left.right = new BinaryTreeNode("E");
-        bTree.right = new BinaryTreeNode("C");
-        bTree.right.right = new BinaryTreeNode("F");
+        bTree.left = new TreeNode("B");
+        bTree.left.left = new TreeNode("D");
+        bTree.left.right = new TreeNode("E");
+        bTree.right = new TreeNode("C");
+        bTree.right.right = new TreeNode("F");
 
         System.out.println("---前序遍历---");
-        bTree.preOrder(bTree);
+        //虽然是静态方法 写类名的好处是不易混淆 规则按照Collections
+        TreeNodeUtil.preOrder(bTree);
         System.out.println();
         System.out.println("---前序遍历非递归---");
-        bTree.preOrderNoRecursion(bTree);
+        TreeNodeUtil.preOrderNoRecursion(bTree);
         System.out.println();
 
         System.out.println("---中序遍历---");
-        bTree.inOrder(bTree);
+        TreeNodeUtil.inOrder(bTree);
         System.out.println();
         System.out.println("---中序遍历非递归---");
-        bTree.inOrderNoRecursion(bTree);
+        TreeNodeUtil.inOrderNoRecursion(bTree);
         System.out.println();
 
         System.out.println("---后序遍历---");
-        bTree.postOrder(bTree);
+        TreeNodeUtil.postOrder(bTree);
         System.out.println();
         System.out.println("---后序遍历非递归---");
-        bTree.postOrderNoRecursion(bTree);
+        TreeNodeUtil.postOrderNoRecursion(bTree);
         System.out.println();
 
         System.out.println("---层次遍历---");
-        bTree.levelOrder(bTree);
+        TreeNodeUtil.levelOrder(bTree);
         System.out.println();
 
         System.out.println("---翻转二叉树---");
-        bTree.levelOrder(bTree.invertTree(bTree));
+        TreeNodeUtil.levelOrder(TreeNodeUtil.invertTree(bTree));
         System.out.println();
         //翻转了一次又翻转过来了
-        bTree.levelOrder(bTree.invertTreeNoRecursion(bTree));
+        TreeNodeUtil.levelOrder(TreeNodeUtil.invertTreeNoRecursion(bTree));
         System.out.println();
 
         System.out.println("---最大深度---");
-        System.out.println(bTree.maxDepth(bTree));
+        System.out.println(TreeNodeUtil.maxDepth(bTree));
 
         System.out.println("---修剪二叉树---");
         TrimBST a = new TrimBST();
-        BinaryTreeNode<Integer> cache = new BinaryTreeNode<Integer>(1);
-        cache.left = new BinaryTreeNode<Integer>(0);
-        cache.right= new BinaryTreeNode<Integer>(2);
-        cache.levelOrder(a.trimBST(cache,1,2));
+        TreeNode<Integer> cache = new TreeNode<Integer>(1);
+        cache.left = new TreeNode<Integer>(0);
+        cache.right= new TreeNode<Integer>(2);
+        TreeNodeUtil.levelOrder(a.trimBST(cache,1,2));
 
+        System.out.println("---输出二叉树路径---");
+        BinaryTreePaths ga = new BinaryTreePaths();
+        System.out.println(ga.binaryTreePaths(bTree));
 
     }
 

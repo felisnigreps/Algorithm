@@ -3,55 +3,10 @@ package com.monkey.dataStructure;
 import java.util.LinkedList;
 import java.util.Stack;
 
-/**
- * Created by xugenli on 2017/6/26.
- */
-public class BinaryTreeNode<T> {
-    public T val;
-    public BinaryTreeNode<T> left;
-    public BinaryTreeNode<T> right;
-
-    public T getVal() {
-        return val;
-    }
-
-    public void setVal(T val) {
-        this.val = val;
-    }
-
-    public BinaryTreeNode getLeft() {
-        return left;
-    }
-
-    public void setLeft(BinaryTreeNode left) {
-        this.left = left;
-    }
-
-    public BinaryTreeNode getRight() {
-        return right;
-    }
-
-    public void setRight(BinaryTreeNode right) {
-        this.right = right;
-    }
-
-
-    public BinaryTreeNode() {
-    }
-
-    public BinaryTreeNode(T val) {
-        this.val = val;
-    }
-
-    public BinaryTreeNode(T val, BinaryTreeNode<T> left, BinaryTreeNode<T> right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-
+public class TreeNodeUtil {
     //preOrderRecursion 前序遍历(递归)
     //前序遍历指的是root在前,根->左->右的顺序进行遍历
-    public void preOrder(BinaryTreeNode<T> t) {
+    public static  void preOrder(TreeNode t) {
         if (t != null) {
             System.out.print(t.val);
             preOrder(t.left);
@@ -60,7 +15,7 @@ public class BinaryTreeNode<T> {
     }
 
     //inOrder 中序遍历 左->根->右
-    public void inOrder(BinaryTreeNode<T> t) {
+    public static void inOrder(TreeNode t) {
         if (t != null) {
             inOrder(t.left);
             System.out.print(t.val);
@@ -69,7 +24,7 @@ public class BinaryTreeNode<T> {
     }
 
     //postOrder 后序遍历 左-->右-->根
-    public void postOrder(BinaryTreeNode<T> t) {
+    public static void postOrder(TreeNode t) {
         if (t != null) {
             postOrder(t.left);
             postOrder(t.right);
@@ -78,18 +33,18 @@ public class BinaryTreeNode<T> {
     }
 
     //preOrder 前序遍历(迭代)
-    public void preOrderNoRecursion(BinaryTreeNode<T> t) {
+    public static void preOrderNoRecursion(TreeNode t) {
         if (t == null) {
             return;
         }
         //使用栈来进行数据操作
-        Stack<BinaryTreeNode> stack = new Stack<BinaryTreeNode>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
         //先压入根节点
         stack.push(t);
         //栈为空退出循环
         while (!stack.isEmpty()) {
             //创建临时节点
-            BinaryTreeNode node = stack.pop();
+            TreeNode node = stack.pop();
             System.out.print(node.val);
             //先压入右节点,保证左节点先出栈
             if (node.right != null) {
@@ -102,12 +57,12 @@ public class BinaryTreeNode<T> {
     }
 
     //inOrder 中序遍历 迭代
-    public void inOrderNoRecursion(BinaryTreeNode<T> t) {
+    public static void inOrderNoRecursion(TreeNode t) {
         if (t == null) {
             return;
         }
-        Stack<BinaryTreeNode> stack = new Stack<BinaryTreeNode>();
-        BinaryTreeNode node = t;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = t;
         //注意这的判断条件 而且不需要在循环之前让root入栈
         //要想到先把左子树先全部入栈,然后再遍历
         while (node != null || !stack.isEmpty()) {
@@ -126,7 +81,7 @@ public class BinaryTreeNode<T> {
     }
 
     //postOrder 后序遍历 迭代
-    public void postOrderNoRecursion(BinaryTreeNode t) {
+    public static void postOrderNoRecursion(TreeNode t) {
         if (t == null) {
             return;
         }
@@ -134,9 +89,9 @@ public class BinaryTreeNode<T> {
         //每循环一次就会取出一个元素到stackOut,那么stackOut的出栈顺序就是左-->右-->根
         //这块也许第一遍读不懂,要结合下面代码,因为根的入栈出栈和left right不在一个循环里 所以可以达到上述效果
         //拿ABC会很好分析
-        BinaryTreeNode node = t;
-        Stack<BinaryTreeNode> in = new Stack<BinaryTreeNode>();
-        Stack<BinaryTreeNode> out = new Stack<BinaryTreeNode>();
+        TreeNode node = t;
+        Stack<TreeNode> in = new Stack<TreeNode>();
+        Stack<TreeNode> out = new Stack<TreeNode>();
         in.push(t);
         while(!in.isEmpty()){
             node = in.pop();
@@ -156,10 +111,10 @@ public class BinaryTreeNode<T> {
     }
 
     //levelOrder 二叉树的层次遍历
-    public void levelOrder(BinaryTreeNode t) throws InterruptedException {
+    public static void levelOrder(TreeNode t) throws InterruptedException {
         //使用队列 直接从左到右插入就好
-        LinkedList<BinaryTreeNode> list = new LinkedList<BinaryTreeNode>();
-        BinaryTreeNode node = new BinaryTreeNode();
+        LinkedList<TreeNode> list = new LinkedList<TreeNode>();
+        TreeNode node = new TreeNode();
         list.add(t);
         while(!list.isEmpty()){
             node = list.poll();
@@ -174,11 +129,11 @@ public class BinaryTreeNode<T> {
     }
 
     //invertTree 翻转/镜像二叉树
-    public BinaryTreeNode invertTree(BinaryTreeNode t) {
+    public static TreeNode invertTree(TreeNode t) {
         if(t==null){
             return null;
         }
-        BinaryTreeNode temp = invertTree(t.left);
+        TreeNode temp = invertTree(t.left);
         t.left = invertTree(t.right);
         t.right = temp;
 
@@ -186,15 +141,15 @@ public class BinaryTreeNode<T> {
     }
 
     //invertTree 翻转/镜像二叉树 迭代
-    public BinaryTreeNode invertTreeNoRecursion(BinaryTreeNode t) {
+    public static TreeNode invertTreeNoRecursion(TreeNode t) {
         if(t==null){
             return null;
         }
-        LinkedList<BinaryTreeNode> list = new LinkedList<BinaryTreeNode>();
+        LinkedList<TreeNode> list = new LinkedList<TreeNode>();
         list.add(t);
         while(!list.isEmpty()){
-            BinaryTreeNode node = list.poll();
-            BinaryTreeNode temp = node.left;
+            TreeNode node = list.poll();
+            TreeNode temp = node.left;
             node.left = node.right;
             node.right = temp;
             if(node.left!=null){
@@ -208,7 +163,7 @@ public class BinaryTreeNode<T> {
     }
 
     //maxDepth 最大深度
-    public int maxDepth(BinaryTreeNode t){
+    public static int maxDepth(TreeNode t){
         if(t==null){
             return 0;
         }

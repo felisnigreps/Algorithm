@@ -1,10 +1,10 @@
 package com.monkey.leetCode;
 
-import com.monkey.dataStructure.BinaryTreeNode;
+import com.monkey.dataStructure.TreeNode;
 
 public class TrimBST {
-    public BinaryTreeNode trimBST(BinaryTreeNode<Integer> root, int L, int R) {
-        BinaryTreeNode<Integer> node;
+    public TreeNode trimBST(TreeNode<Integer> root, int L, int R) {
+        TreeNode<Integer> node;
         if (root == null) {
             return null;
         }
