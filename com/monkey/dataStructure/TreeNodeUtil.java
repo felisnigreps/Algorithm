@@ -6,7 +6,7 @@ import java.util.Stack;
 public class TreeNodeUtil {
     //preOrderRecursion 前序遍历(递归)
     //前序遍历指的是root在前,根->左->右的顺序进行遍历
-    public static  void preOrder(TreeNode t) {
+    public static void preOrder(TreeNode t) {
         if (t != null) {
             System.out.print(t.val);
             preOrder(t.left);
@@ -93,18 +93,18 @@ public class TreeNodeUtil {
         Stack<TreeNode> in = new Stack<TreeNode>();
         Stack<TreeNode> out = new Stack<TreeNode>();
         in.push(t);
-        while(!in.isEmpty()){
+        while (!in.isEmpty()) {
             node = in.pop();
             out.push(node);
-            if(node.left!=null){
+            if (node.left != null) {
                 in.push(node.left);
             }
-            if(node.right!=null){
+            if (node.right != null) {
                 in.push(node.right);
             }
 
         }
-        while (!out.isEmpty()){
+        while (!out.isEmpty()) {
             node = out.pop();
             System.out.print(node.val);
         }
@@ -113,16 +113,16 @@ public class TreeNodeUtil {
     //levelOrder 二叉树的层次遍历
     public static void levelOrder(TreeNode t) throws InterruptedException {
         //使用队列 直接从左到右插入就好
-        LinkedList<TreeNode> list = new LinkedList<TreeNode>();
-        TreeNode node = new TreeNode();
+        LinkedList<TreeNode> list = new LinkedList<>();
+        TreeNode node;
         list.add(t);
-        while(!list.isEmpty()){
+        while (!list.isEmpty()) {
             node = list.poll();
             System.out.print(node.val);
-            if(node.left!=null){
+            if (node.left != null) {
                 list.add(node.left);
             }
-            if(node.right!=null){
+            if (node.right != null) {
                 list.add(node.right);
             }
         }
@@ -130,7 +130,7 @@ public class TreeNodeUtil {
 
     //invertTree 翻转/镜像二叉树
     public static TreeNode invertTree(TreeNode t) {
-        if(t==null){
+        if (t == null) {
             return null;
         }
         TreeNode temp = invertTree(t.left);
@@ -142,20 +142,20 @@ public class TreeNodeUtil {
 
     //invertTree 翻转/镜像二叉树 迭代
     public static TreeNode invertTreeNoRecursion(TreeNode t) {
-        if(t==null){
+        if (t == null) {
             return null;
         }
         LinkedList<TreeNode> list = new LinkedList<TreeNode>();
         list.add(t);
-        while(!list.isEmpty()){
+        while (!list.isEmpty()) {
             TreeNode node = list.poll();
             TreeNode temp = node.left;
             node.left = node.right;
             node.right = temp;
-            if(node.left!=null){
+            if (node.left != null) {
                 list.add(node.left);
             }
-            if(node.right!=null){
+            if (node.right != null) {
                 list.add(node.right);
             }
         }
@@ -163,15 +163,15 @@ public class TreeNodeUtil {
     }
 
     //maxDepth 最大深度
-    public static int maxDepth(TreeNode t){
-        if(t==null){
+    public static int maxDepth(TreeNode t) {
+        if (t == null) {
             return 0;
         }
         int left = maxDepth(t.left);
         int right = maxDepth(t.right);
 
 
-        return Math.max(left,right)+1;
+        return Math.max(left, right) + 1;
     }
 
 /*

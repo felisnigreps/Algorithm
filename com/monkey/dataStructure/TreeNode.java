@@ -38,8 +38,6 @@ public class TreeNode<T> {
 
     public TreeNode(T val) {
         this.val = val;
-        this.left = new TreeNode<>();
-        this.right = new TreeNode<>();
     }
 
     public TreeNode(T val, TreeNode<T> left, TreeNode<T> right) {
