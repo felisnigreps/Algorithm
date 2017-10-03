@@ -1,8 +1,8 @@
 package com.monkey.BinaryTree;
 
 import com.monkey.dataStructure.TreeNode;
-import com.monkey.dataStructure.TreeNodeUtil;
 import com.monkey.leetCode.BinaryTreePaths;
+import com.monkey.leetCode.FindValueMostElement;
 import com.monkey.leetCode.TrimBST;
 
 public class BinaryTreeTestCase {
@@ -68,6 +68,7 @@ public class BinaryTreeTestCase {
         TreeNodeUtil.levelOrder(bTree);
         System.out.println();
 
+
         System.out.println("---翻转二叉树---");
         TreeNodeUtil.levelOrder(TreeNodeUtil.invertTree(bTree));
         System.out.println();
@@ -82,12 +83,25 @@ public class BinaryTreeTestCase {
         TrimBST a = new TrimBST();
         TreeNode<Integer> cache = new TreeNode<Integer>(1);
         cache.left = new TreeNode<Integer>(0);
-        cache.right= new TreeNode<Integer>(2);
-        TreeNodeUtil.levelOrder(a.trimBST(cache,1,2));
+        cache.right = new TreeNode<Integer>(2);
+        TreeNodeUtil.levelOrder(a.trimBST(cache, 1, 2));
 
         System.out.println("---输出二叉树路径---");
         BinaryTreePaths ga = new BinaryTreePaths();
         System.out.println(ga.binaryTreePaths(bTree));
+
+
+        TreeNode<Integer> s = new TreeNode<Integer>(5);
+        //也可以使用insertLeft方法等新建结点,按照方法插入
+        bTree.left = new TreeNode(3);
+        bTree.left.left = new TreeNode(1);
+        bTree.left.right = new TreeNode(4);
+        bTree.right = new TreeNode(7);
+        bTree.right.right = new TreeNode(9);
+
+        System.out.println("---输出每层的最大值---");
+        FindValueMostElement obj = new FindValueMostElement();
+        System.out.println(obj.largestValues(s));
 
     }
 

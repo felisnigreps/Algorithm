@@ -1,4 +1,6 @@
-package com.monkey.dataStructure;
+package com.monkey.BinaryTree;
+
+import com.monkey.dataStructure.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Stack;

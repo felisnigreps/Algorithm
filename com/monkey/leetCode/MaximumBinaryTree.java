@@ -1,7 +1,7 @@
 package com.monkey.leetCode;
 
 import com.monkey.dataStructure.TreeNode;
-import com.monkey.dataStructure.TreeNodeUtil;
+import com.monkey.BinaryTree.TreeNodeUtil;
 
 public class MaximumBinaryTree {
     public TreeNode calculate(int[] nums) {
